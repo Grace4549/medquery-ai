@@ -1,10 +1,7 @@
+import AppRoutes from "./routes/AppRoutes";
+
 function App() {
-  return (
-    <main>
-      <h1>MedQuery AI</h1>
-      <p>Secure AI-powered healthcare knowledge assistant.</p>
-    </main>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
