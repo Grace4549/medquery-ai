@@ -1,78 +1,67 @@
+import { Activity } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import "./Navbar.css";
+import { Button } from "@/components/ui/button";
 
 function Navbar() {
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Resources", path: "/resources" },
+    { name: "FAQs", path: "/faqs" },
+    { name: "Contact", path: "/contact" },
+  ];
+
   return (
-    <nav className="navbar">
-      <div className="navbar__logo">
-        <NavLink to="/">MedQuery AI</NavLink>
-      </div>
+    <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/80 backdrop-blur-xl">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6 lg:px-12">
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-200">
+            <Activity className="h-7 w-7" strokeWidth={2.5} />
+          </div>
 
-      <ul className="navbar__links">
-        <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Home
-          </NavLink>
-        </li>
+          <div className="leading-tight">
+            <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
+              MedQuery AI
+            </h1>
 
-        <li>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            About
-          </NavLink>
-        </li>
+            <p className="mt-1 text-sm font-medium tracking-wide text-slate-500">
+              AI-Powered Healthcare Platform
+            </p>
+          </div>
+        </NavLink>
 
-        <li>
-          <NavLink
-            to="/services"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Services
-          </NavLink>
-        </li>
+        {/* Navigation */}
+        <nav className="hidden lg:block">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `text-[15px] font-medium transition-all duration-300 ${
+                      isActive
+                        ? "text-blue-600"
+                        : "text-slate-600 hover:text-blue-600"
+                    }`
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <li>
-          <NavLink
-            to="/resources"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Resources
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink
-            to="/faqs"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            FAQs
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Contact
-          </NavLink>
-        </li>
-      </ul>
-
-      <div className="navbar__actions">
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "active login-btn" : "login-btn")}
-        >
-          Login
+        {/* Login Button */}
+        <NavLink to="/login">
+          <Button className="rounded-xl bg-blue-600 px-8 py-6 text-base font-semibold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl">
+            Login
+          </Button>
         </NavLink>
       </div>
-    </nav>
+    </header>
   );
 }
 
